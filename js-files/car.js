@@ -15,6 +15,10 @@ class Car {
   }
 
   update() {
+    this.#move()
+  }
+
+  #move() {
     // Handle Acceleration for forward and reverse
     if (this.controls.forward) {
       this.speed += this.acceleration;
@@ -44,12 +48,12 @@ class Car {
 
     // Left and Right Rotation
     if (this.speed !== 0) {
-      const flip = this.speed > 0 ? 1:-1
+      const flip = this.speed > 0 ? 1 : -1;
       if (this.controls.left) {
         this.angle += 0.03 * flip;
       }
       if (this.controls.right) {
-        this.angle += 0.03 * flip;
+        this.angle -= 0.03 * flip;
       }
     }
 
