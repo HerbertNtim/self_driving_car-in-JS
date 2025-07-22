@@ -15,21 +15,19 @@ class Sensor {
     for (let i = 0; i < this.rays.length; i++) {
       this.readings.push(this.#getReadings(this.rays[i], roadBorders));
     }
+    // console.log(this.readings)
   }
 
-  #getReadings(ray, roadBorders = []) {
+  #getReadings(ray, roadBorders) {
     let touches = [];
 
     for (let i = 0; i < roadBorders.length; i++) {
-      const touch = geIntersection(
+      const touch = getIntersection(
         ray[0],
         ray[1],
         roadBorders[i][0],
         roadBorders[i][1]
       );
-
-      console.log(touch)
-
       if (touch) {
         touches.push(touch);
       }
@@ -40,7 +38,7 @@ class Sensor {
     } else {
       const offsets = touches.map((e) => e.offset);
       const minOffset = Math.min(...offsets);
-      return touches.find((e) => e.offset == minOffset);
+      return touches.find((e) => e.offset === minOffset);
     }
   }
 
@@ -48,7 +46,7 @@ class Sensor {
     this.rays = []; // ✅ Clear previous rays
 
     for (let i = 0; i < this.rayCount; i++) {
-      const t = this.rayCount === 1 ? 0.5 : i / (this.rayCount - 1); // ✅ Avoid divide-by-zero
+      const t = this.rayCount === 1 ? 0.5 : i / (this.rayCount - 1);
       const rayAngle =
         lerp(this.raySpread / 2, -this.raySpread / 2, t) + this.car.angle;
 
@@ -67,7 +65,10 @@ class Sensor {
       const ray = this.rays[i];
       if (!ray || !ray[0] || !ray[1]) continue;
 
-      let end = this.readings[i] || ray[1];
+      let end = ray[1];
+      if (this.readings[i]) {
+        end = this.readings[i];
+      }
 
       // yellow = visible ray
       ctx.beginPath();
