@@ -31,11 +31,20 @@ function polyIntersect(poly1, poly2) {
         poly2[(j + 1) % poly2.length]
       );
 
-      if(touch) {
+      if (touch) {
         return true;
       }
     }
   }
 
   return false;
+}
+
+function getRGBA(colorValue) {
+  const alpha = Math.abs(colorValue);
+  const R = colorValue < 0 ? 0 : 255;
+  const G = R;
+  const B = colorValue > 0 ? 0 : 255;
+
+  return "rgba(" + R + ", " + G + ", " + B + ", " + alpha + ")";
 }
