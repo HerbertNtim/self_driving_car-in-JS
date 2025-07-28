@@ -26,7 +26,7 @@ class Visualizer {
         levelTop,
         width,
         levelHeight,
-        i === network.levels.length - 1 ? ["u", "l", "r", "d"] : []
+        i === network.levels.length - 1 ? ["🠉", "🠈", "🠊", "🠋"] : []
       );
     }
   }
