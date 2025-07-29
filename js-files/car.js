@@ -10,7 +10,7 @@ class Car {
     this.maxSpeed = maxSpeed;
     this.friction = 0.05;
     this.angle = 0;
-    this.damage = false;
+    this.damaged = false;
 
     this.useBrain = controlType === "AI";
 
@@ -39,10 +39,10 @@ class Car {
   }
 
   update(roadBorders, traffic) {
-    if (!this.damage) {
+    if (!this.damaged) {
       this.#move();
       this.polygon = this.#createPolygon();
-      this.damage = this.#assessDamage(roadBorders, traffic);
+      this.damaged = this.#assessDamage(roadBorders, traffic);
     }
 
     if (this.sensor) {
@@ -154,7 +154,7 @@ class Car {
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(-this.angle);
-    if (!this.damage) {
+    if (!this.damaged) {
       ctx.drawImage(
         this.mask,
         -this.width / 2,
@@ -171,6 +171,7 @@ class Car {
       this.width,
       this.height
     );
+    
     ctx.restore();
   }
 }
