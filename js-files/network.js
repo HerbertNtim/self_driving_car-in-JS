@@ -52,7 +52,6 @@ class Level {
     // Defining the actual neurons
     this.inputs = new Array(inputCount); // Values from the car sensors
     this.outputs = new Array(outputCount);
-
     this.biases = new Array(outputCount); // Each output neuron have a biases.
 
     // These connections between the inputs and outputs have weights. Each input node has output counts of connections

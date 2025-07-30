@@ -15,7 +15,6 @@ class Sensor {
     for (let i = 0; i < this.rays.length; i++) {
       this.readings.push(this.#getReadings(this.rays[i], roadBorders, traffic));
     }
-    // console.log(this.readings)
   }
 
   #getReadings(ray, roadBorders, traffic) {

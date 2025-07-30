@@ -30,7 +30,7 @@ class Car {
     const maskCtx = this.mask.getContext("2d");
     this.img.onload = () => {
       maskCtx.fillStyle = color;
-      maskCtx.rect(0, 0, width, height);
+      maskCtx.rect(0, 0, this.width, this.height);
       maskCtx.fill();
 
       maskCtx.globalCompositeOperation = "destination-atop";
@@ -164,6 +164,7 @@ class Car {
       );
       ctx.globalCompositeOperation = "multiply";
     }
+    
     ctx.drawImage(
       this.img,
       -this.width / 2,
