@@ -1,5 +1,14 @@
 class Car {
-  constructor(x, y, width, height, controlType, maxSpeed = 3, color = "blue") {
+  constructor(
+    x,
+    y,
+    width,
+    height,
+    controlType,
+    maxSpeed = 3,
+    color = "blue",
+    damaged = false
+  ) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -10,7 +19,7 @@ class Car {
     this.maxSpeed = maxSpeed;
     this.friction = 0.05;
     this.angle = 0;
-    this.damaged = false;
+    this.damaged = damaged;
 
     this.useBrain = controlType === "AI";
 
@@ -150,7 +159,7 @@ class Car {
     if (this.sensor && drawSensor) {
       this.sensor.draw(ctx);
     }
-    
+
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(-this.angle);
@@ -162,9 +171,10 @@ class Car {
         this.width,
         this.height
       );
+
       ctx.globalCompositeOperation = "multiply";
     }
-    
+
     ctx.drawImage(
       this.img,
       -this.width / 2,
@@ -172,7 +182,7 @@ class Car {
       this.width,
       this.height
     );
-    
+
     ctx.restore();
   }
 }
